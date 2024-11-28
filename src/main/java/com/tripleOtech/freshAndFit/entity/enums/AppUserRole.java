@@ -1,8 +1,8 @@
 package com.tripleOtech.freshAndFit.entity.enums;
 
-public enum UserRoles {
+public enum AppUserRole {
     ADMIN,
-    SUPPER_ADMIN,
+    SUPER_ADMIN,
     CUSTOMER,
-    RIDER
+    RIDER,
 }

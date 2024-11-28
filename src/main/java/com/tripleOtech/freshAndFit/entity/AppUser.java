@@ -1,25 +1,33 @@
 package com.tripleOtech.freshAndFit.entity;
 
-import com.tripleOtech.freshAndFit.entity.enums.UserRoles;
+import com.tripleOtech.freshAndFit.entity.enums.AppUserRole;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class AppUser {
+    @Id
+    @GeneratedValue
     private Long id;
-    private String email;
-    private String profile;
     private String firstName;
     private String lastName;
-    private String phone;
+    private String email;
+    private String userName;
+    @OneToOne
+    @JoinColumn(name = "location_id")
     private Address location;
-    private UserRoles role;
-    private LocalDate createdAt;
-
+    @Enumerated(value = EnumType.STRING)
+    private AppUserRole role;
+    private String imgUrl;
+    private LocalDate cratedAt;
+    private String phoneNumber;
 }

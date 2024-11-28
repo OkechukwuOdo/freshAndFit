@@ -1,29 +1,27 @@
 package com.tripleOtech.freshAndFit.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Cart {
-    private Long cartId;
-    private AppUser customer;
-    private Integer totalItems;
-//    private Integer totalQuantity;
-    private Double totalPrice;
-    private String status; // ACTIVE, ABANDONED, CHECKED_OUT
-    private String couponCode;
-    private Double discountedTotal;
-    private LocalDateTime createdDate;
-    private LocalDateTime lastUpdatedDate;
-
-//    @OneToMany(cascade = CascadeType.ALL)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private AppUser appUser;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems;
+    private BigDecimal totalPrice;
 }
