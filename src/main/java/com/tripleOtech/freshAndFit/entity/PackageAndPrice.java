@@ -1,5 +1,6 @@
 package com.tripleOtech.freshAndFit.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,11 +11,17 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Packaging {
-    private String unit;
+@Entity
+public class PackageAndPrice {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String pack;
     private BigDecimal price;
     private BigDecimal discount;
     private BigDecimal finalPrice;
-    private int quantity;
-    private int weight;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private SampleProduct sampleProduct;
+
 }
