@@ -23,7 +23,7 @@ public class CartItem {
     private Cart cart;
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    private SampleProduct productList;
-    private int quantity;
-    private double subtotal;
+    private SampleProduct product;
+    private Integer quantity;
+    private Double subtotal;
 }

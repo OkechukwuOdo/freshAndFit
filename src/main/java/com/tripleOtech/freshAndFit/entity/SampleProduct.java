@@ -1,15 +1,13 @@
 package com.tripleOtech.freshAndFit.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -22,9 +20,8 @@ public class SampleProduct {
     private Long id;
     private String productName;
     private String productCategory;
-    private String price;
     private boolean isAvailable;
-    private Integer stuckQuantity;
+    @Column(nullable = false, updatable = false)
     private LocalDate createdAt;
     @OneToMany(
             mappedBy = "sampleProduct",
@@ -33,4 +30,15 @@ public class SampleProduct {
     )
     private List<PackageAndPrice> packageAndPrices;
 
+    @Column(nullable = true)
+    private String description;
+
+    @Column(nullable = false)
+    private int quantityInStuck; // Available stock
+
+    @Column(nullable = true)
+    private String imageUrl; // Link to the product image
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 }

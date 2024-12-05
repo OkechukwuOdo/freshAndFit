@@ -23,5 +23,5 @@ public class Cart {
     private AppUser appUser;
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems;
-    private BigDecimal totalPrice;
+    private Double totalPrice;
 }

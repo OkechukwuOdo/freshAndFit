@@ -20,8 +20,7 @@ public class Wallet {
     @OneToOne
     @JoinColumn()
     private AppUser appUser;
-    private BigDecimal balance;
+    private Double balance;
     private LocalDateTime createdAt;
     private LocalDateTime lastSub;
-    private String currency;
 }

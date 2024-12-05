@@ -18,9 +18,9 @@ public class PackageAndPrice {
     @GeneratedValue
     private Long id;
     private String pack;
-    private BigDecimal price;
-    private BigDecimal discount;
-    private BigDecimal finalPrice;
+    private Double price;
+    private Double discount;
+    private Double finalPrice;
     @ManyToOne(fetch = FetchType.LAZY)
     private SampleProduct sampleProduct;
 
