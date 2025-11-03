@@ -3,7 +3,6 @@ package com.tripleOtech.freshAndFit.controller;
 import com.tripleOtech.freshAndFit.dto.requestDtos.AppUserRequestDto;
 import com.tripleOtech.freshAndFit.dto.responseDtos.ApiResponse;
 import com.tripleOtech.freshAndFit.dto.responseDtos.PaginationResponse;
-import com.tripleOtech.freshAndFit.email.EmailService;
 import com.tripleOtech.freshAndFit.entity.AppUser;
 import com.tripleOtech.freshAndFit.service.AppUserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AppUserController {
     private final AppUserService appUserService;
-    private final EmailService emailService;
     @Operation(
             description = "Edith a user"
     )

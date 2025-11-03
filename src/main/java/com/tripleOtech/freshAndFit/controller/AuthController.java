@@ -25,6 +25,8 @@ import java.io.IOException;
 public class AuthController {
     private final AuthenticationService authenticationService;
     private final PasswordEncoder passwordEncoder;
+
+
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<?>> register(@RequestBody AppUserRequestDto requestDto){
         requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
@@ -38,6 +40,6 @@ public class AuthController {
 
     @PostMapping("/refresh-token")
     public void refresh(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      authenticationService.refresToken(request,response);
+      authenticationService.refreshToken(request,response);
     }
 }

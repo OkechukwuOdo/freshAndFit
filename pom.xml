@@ -39,18 +39,18 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.paypal.sdk/paypal-core -->
-		<dependency>
-			<groupId>com.paypal.sdk</groupId>
-			<artifactId>paypal-core</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.paypal.sdk/paypal-core -->
-		<dependency>
-			<groupId>com.paypal.sdk</groupId>
-			<artifactId>rest-api-sdk</artifactId>
-			<version>1.14.0</version>
-		</dependency>
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/com.paypal.sdk/paypal-core &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.paypal.sdk</groupId>-->
+<!--			<artifactId>paypal-core</artifactId>-->
+<!--			<version>1.7.2</version>-->
+<!--		</dependency>-->
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/com.paypal.sdk/paypal-core &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.paypal.sdk</groupId>-->
+<!--			<artifactId>rest-api-sdk</artifactId>-->
+<!--			<version>1.14.0</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -92,7 +92,11 @@
 			<artifactId>gson</artifactId>
 			<version>2.11.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>dotenv-java</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 		<dependency>
 			<groupId>com.sendgrid</groupId>
 			<artifactId>sendgrid-java</artifactId>

@@ -1,18 +1,15 @@
 package com.tripleOtech.freshAndFit.wrapper;
 
-import com.tripleOtech.freshAndFit.dto.requestDtos.AppUserRequestDto;
 import com.tripleOtech.freshAndFit.dto.requestDtos.ProductRequestDto;
-import com.tripleOtech.freshAndFit.dto.responseDtos.AppUserResponseDto;
 import com.tripleOtech.freshAndFit.dto.responseDtos.ProductResponseDto;
-import com.tripleOtech.freshAndFit.entity.AppUser;
-import com.tripleOtech.freshAndFit.entity.SampleProduct;
+import com.tripleOtech.freshAndFit.entity.FoodItem;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SampleProductWrapper {
-    public static SampleProduct productRequestToSampleProduct(ProductRequestDto requestDto){
+    public static FoodItem productRequestToSampleProduct(ProductRequestDto requestDto){
 
-        return SampleProduct.builder()
+        return FoodItem.builder()
                 .productName(requestDto.getProductName())
                 .build();
     }

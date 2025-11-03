@@ -14,5 +14,5 @@ public interface AuthenticationService {
     AuthenticationResponse register(AppUserRequestDto requestDto);
     AuthenticationResponse authenticate(AuthenticationsRequest requestDto);
 
-    void refresToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
+    void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

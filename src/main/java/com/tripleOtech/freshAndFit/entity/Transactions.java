@@ -28,7 +28,7 @@ public class Transactions {
     private AppUser user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "orderId", nullable = false)
     private Order order;
 
     @Column(nullable = false)

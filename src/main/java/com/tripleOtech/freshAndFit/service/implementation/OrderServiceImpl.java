@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
         order.setTotalAmount(0);
 
         for (CartItem cartItem : cart.getCartItems()) {
-            SampleProduct product = cartItem.getProduct();
+            FoodItem product = cartItem.getProduct();
 
             if (product.getQuantityInStuck() < cartItem.getQuantity()) {
                 throw new RuntimeException("Product stock insufficient for: " + product.getProductName());

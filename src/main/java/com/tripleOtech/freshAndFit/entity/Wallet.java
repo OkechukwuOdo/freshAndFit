@@ -18,9 +18,9 @@ public class Wallet {
     @GeneratedValue
     private Long id;
     @OneToOne
-    @JoinColumn()
-    private AppUser appUser;
+    @JoinColumn(name = "app_user_id",unique = true)
+    private AppUser user;
     private Double balance;
     private LocalDateTime createdAt;
-    private LocalDateTime lastSub;
+    private LocalDateTime updated;
 }

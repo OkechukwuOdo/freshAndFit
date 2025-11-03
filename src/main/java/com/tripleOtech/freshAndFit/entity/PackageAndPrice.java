@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 @Data
 @Builder
 @AllArgsConstructor
@@ -21,7 +20,8 @@ public class PackageAndPrice {
     private Double price;
     private Double discount;
     private Double finalPrice;
+    private String imageUrl;
     @ManyToOne(fetch = FetchType.LAZY)
-    private SampleProduct sampleProduct;
+    private FoodItem sampleProduct;
 
 }

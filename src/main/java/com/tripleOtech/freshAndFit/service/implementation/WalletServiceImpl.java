@@ -17,7 +17,7 @@ public class WalletServiceImpl implements WalletService {
     public void createWallet(Long userId) {
         AppUser appUser= appUserRepository.findAppUserById(userId).orElseThrow();
         Wallet wallet= new Wallet();
-        wallet.setAppUser(appUser);
+        wallet.setUser(appUser);
         wallet.setCreatedAt(LocalDateTime.now());
         wallet.setBalance(0.0);
     }

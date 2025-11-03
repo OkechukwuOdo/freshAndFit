@@ -17,12 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private AppUser user;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
@@ -35,10 +36,9 @@ public class Order {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderStatus status;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> deliveryAddress = new ArrayList<>();
 
-    @OneToOne
-    @JoinColumn(name = "location_id")
-    private Address shippingAddress;
     @Enumerated(value = EnumType.STRING)
     private PaymentMethod paymentMethod; // e.g., Credit Card, PayPal, etc.
 

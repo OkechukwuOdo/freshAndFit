@@ -4,12 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tripleOtech.freshAndFit.dto.requestDtos.AppUserRequestDto;
 import com.tripleOtech.freshAndFit.dto.requestDtos.AuthenticationsRequest;
 import com.tripleOtech.freshAndFit.dto.responseDtos.AuthenticationResponse;
-import com.tripleOtech.freshAndFit.dto.responseDtos.UserRegistrationResponse;
 import com.tripleOtech.freshAndFit.entity.AppUser;
-import com.tripleOtech.freshAndFit.entity.Wallet;
 import com.tripleOtech.freshAndFit.repository.AppUserRepository;
-import com.tripleOtech.freshAndFit.repository.WallerRepository;
-import com.tripleOtech.freshAndFit.security.JwtService;
+import com.tripleOtech.freshAndFit.security.JwtUtil;
 import com.tripleOtech.freshAndFit.security.UserDetailService;
 import com.tripleOtech.freshAndFit.service.AuthenticationService;
 import com.tripleOtech.freshAndFit.service.CartService;
@@ -26,14 +23,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.net.http.HttpHeaders;
 
 @RequiredArgsConstructor
 @Service
 @Slf4j
 public class AuthServiceImpl implements AuthenticationService {
     private final AppUserRepository appUserRepository;
-    private final JwtService jwtService;
+    private final JwtUtil jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserDetailService userDetailService;
     private  AuthenticationResponse tokenResponse;
@@ -43,7 +39,7 @@ public class AuthServiceImpl implements AuthenticationService {
     public AuthenticationResponse register(AppUserRequestDto requestDto) {
         AppUser newUser=  appUserRepository.save(AppUserWrapper.userRequestToUser(requestDto));
         walletService.createWallet(newUser.getId());
-        cartService.creatCart(newUser.getId());
+//        cartService.creatCart(newUser.getId());
         return AuthenticationResponse
                 .builder()
                 .accessToken("Access Token")
@@ -71,7 +67,7 @@ public class AuthServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public void refresToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final String authHeader = request.getHeader("Authorization");
         final String refreshToken;
         final String username;

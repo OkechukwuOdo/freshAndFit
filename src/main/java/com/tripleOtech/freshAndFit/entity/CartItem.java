@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @AllArgsConstructor
@@ -19,11 +17,11 @@ public class CartItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
+    @JoinColumn(name = "cartId", nullable = false)
     private Cart cart;
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private SampleProduct product;
+    @JoinColumn(name = "productId", nullable = false)
+    private FoodItem product;
     private Integer quantity;
     private Double subtotal;
 }

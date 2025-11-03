@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@Table(name = "user")
+//@Table(name = "users")
 public class AppUser {
     @Id
     @GeneratedValue
@@ -27,15 +28,20 @@ public class AppUser {
     private String lastName;
     private String email;
     private String userName;
-    @OneToOne
-    @JoinColumn(name = "location_id")
-    private Address location;
+//    @OneToMany(mappedBy = "app_user", cascade = CascadeType.ALL, orphanRemoval = true)
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses = new ArrayList<>();
     @Enumerated(value = EnumType.STRING)
     private AppUserRole role;
     private String imgUrl;
     private LocalDate cratedAt;
     private String phoneNumber;
     private String password;
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Wallet wallet;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
 }

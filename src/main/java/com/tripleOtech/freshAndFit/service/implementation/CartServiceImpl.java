@@ -5,7 +5,7 @@ import com.tripleOtech.freshAndFit.dto.responseDtos.PaginationResponse;
 import com.tripleOtech.freshAndFit.entity.AppUser;
 import com.tripleOtech.freshAndFit.entity.Cart;
 import com.tripleOtech.freshAndFit.entity.CartItem;
-import com.tripleOtech.freshAndFit.entity.SampleProduct;
+import com.tripleOtech.freshAndFit.entity.FoodItem;
 import com.tripleOtech.freshAndFit.exeption.ResourceNotFoundException;
 import com.tripleOtech.freshAndFit.repository.AppUserRepository;
 import com.tripleOtech.freshAndFit.repository.CartItemRepository;
@@ -29,22 +29,22 @@ public class CartServiceImpl implements CartService {
     public void creatCart(Long userId) {
         AppUser appUser= appUserRepository.findAppUserById(userId).orElseThrow();
         Cart cart = new Cart();
-        cart.setAppUser(appUser);
+        cart.setUser(appUser);
         cartRepository.save(cart);
     }
 
     @Override
     public ApiResponse<Cart> addToCart(Long userId, Long productId) {
-        Optional<SampleProduct> productOptional = productRepository.findById(productId);
+        Optional<FoodItem> productOptional = productRepository.findById(productId);
         AppUser appUser= appUserRepository.findAppUserById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         if (productOptional.isEmpty()) {
             throw new ResourceNotFoundException("Product not found");
         }
-        SampleProduct product = productOptional.get();
-        Cart cart = cartRepository.findCartByAppUser(appUser).orElseGet(() -> {
+        FoodItem product = productOptional.get();
+        Cart cart = cartRepository.findCartByUser(appUser).orElseGet(() -> {
             Cart newCart = new Cart();
-            newCart.setAppUser(appUser);
+            newCart.setUser(appUser);
             return cartRepository.save(newCart);
         });
         Optional<CartItem> existingItem = cart.getCartItems().stream()
@@ -66,9 +66,9 @@ public class CartServiceImpl implements CartService {
     @Override
     public ApiResponse<Cart> getCartByUser(Long userId) {
        AppUser appUser= appUserRepository.findAppUserById(userId).orElseThrow();
-        Cart cart = cartRepository.findCartByAppUser(appUser).orElseGet(() -> {
+        Cart cart = cartRepository.findCartByUser(appUser).orElseGet(() -> {
             Cart newCart = new Cart();
-            newCart.setAppUser(appUser);
+            newCart.setUser(appUser);
             return cartRepository.save(newCart);
         });
         return ApiResponse.buildSuccessTxn(cart);

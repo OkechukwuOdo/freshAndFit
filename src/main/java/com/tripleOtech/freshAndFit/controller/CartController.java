@@ -1,7 +1,5 @@
 package com.tripleOtech.freshAndFit.controller;
-
 import com.tripleOtech.freshAndFit.dto.responseDtos.ApiResponse;
-import com.tripleOtech.freshAndFit.repository.CartRepository;
 import com.tripleOtech.freshAndFit.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
